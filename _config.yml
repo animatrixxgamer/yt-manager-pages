@@ -1,0 +1,14 @@
+title: Animatrixx YT Manager
+description: A personal automation tool for managing YouTube channels, including video uploads, metadata management, and content scheduling.
+url: "https://animatrixxgamer.github.io"
+baseurl: "/yt-manager-pages"
+
+author:
+  name: Animatrixx
+  email: animatrixxgamer@gmail.com
+
+theme: minima
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
