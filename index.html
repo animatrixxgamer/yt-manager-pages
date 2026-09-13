@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animatrixx YT Manager — YouTube Automation Tool</title>
+    <meta name="description" content="A personal automation tool for managing YouTube channels, including video uploads, metadata management, and content scheduling.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.3);
+        }
+
+        .logo::after {
+            content: '▶';
+            color: white;
+            font-size: 36px;
+            margin-left: 6px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            color: #a0a0c0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card h2 .icon {
+            font-size: 1.6rem;
+        }
+
+        .card p {
+            color: #b0b0c8;
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(160, 160, 255, 0.3);
+        }
+
+        .feature h3 {
+            font-size: 1.05rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            color: #9090a8;
+            margin: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            text-decoration: none;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.3);
+            margin-top: 16px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.5);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(160, 160, 255, 0.15);
+            color: #a0a0ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #7070a0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #a0a0ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .card { padding: 28px 20px; }
+            .container { padding: 40px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"></div>
+            <h1>Animatrixx YT Manager</h1>
+            <p class="tagline">A personal automation tool for managing YouTube channels — uploads, metadata, and content scheduling, all in one place.</p>
+        </header>
+
+        <div class="card">
+            <span class="badge">Personal Tool</span>
+            <h2><span class="icon">🎯</span> What This App Does</h2>
+            <p>Animatrixx YT Manager is a custom-built personal automation tool that streamlines YouTube channel management. It connects to the YouTube Data API v3 to handle video uploads, metadata configuration, and content organization through a secure Telegram bot interface.</p>
+            <p>This application is intended for <strong>personal use only</strong>. It does not collect, store, or share any user data with third parties.</p>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">⚡</span> Key Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>📤 Automated Uploads</h3>
+                    <p>Upload videos directly to authorized YouTube channels via Telegram.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏷️ Metadata Management</h3>
+                    <p>Set titles, descriptions, tags, and hashtags automatically.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔄 Multi-Channel Support</h3>
+                    <p>Manage multiple YouTube accounts and brand channels from one bot.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔒 Secure OAuth 2.0</h3>
+                    <p>Uses Google's official OAuth 2.0 flow with offline refresh tokens.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><span class="icon">🔐</span> Privacy &amp; Data</h2>
+            <p>This application uses YouTube API Services. By using this app, you agree to the <a href="https://www.youtube.com/t/terms" style="color:#a0a0ff;">YouTube Terms of Service</a> and the <a href="https://policies.google.com/privacy" style="color:#a0a0ff;">Google Privacy Policy</a>.</p>
+            <a href="privacy.html" class="btn">Read Full Privacy Policy</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Animatrixx YT Manager · <a href="privacy.html">Privacy Policy</a></p>
+        </footer>
+    </div>
+</body>
+</html>
