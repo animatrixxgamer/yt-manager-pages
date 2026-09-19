@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Updates — Animatrixx YT Manager</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .updates { max-width: 800px; margin: 0 auto; padding: 60px 0; }
+  .updates h1 { font-size: 2.2rem; margin-bottom: 8px; text-align: center; }
+  .updates .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 48px; }
+  .post {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    transition: all 0.25s;
+  }
+  .post:hover {
+    border-color: rgba(255, 0, 51, 0.3);
+    transform: translateY(-2px);
+  }
+  .post-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .post-tag {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    background: rgba(160, 160, 255, 0.15);
+    color: var(--accent);
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .post-date {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  .post h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: white;
+  }
+  .post p {
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+  .post a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .post a:hover { text-decoration: underline; }
+  .post ul {
+    padding-left: 20px;
+    margin: 16px 0;
+  }
+  .post ul li {
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .post code {
+    background: rgba(255,255,255,0.06);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    color: var(--accent);
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">▶</span>
+      <span>Animatrixx</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://t.me/animatrixx_yt_manager_bot" class="btn-nav" target="_blank">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container updates">
+  <h1>Updates & News</h1>
+  <p class="subtitle">Latest announcements from the project.</p>
+
+  <article class="post">
+    <div class="post-meta">
+      <span class="post-tag">Release</span>
+      <span class="post-date">September 19, 2026</span>
+    </div>
+    <h2>🎉 v4.0 "Epic Edition" is here!</h2>
+    <p>After weeks of work, the biggest update yet is live. Here's what's new:</p>
+    <ul>
+      <li><strong>Upload Hub</strong> — Pick your upload type (Shorts, Video, Link, Bulk) from a clean menu</li>
+      <li><strong>Analytics Dashboard</strong> — See subscribers, views, and top-performing videos</li>
+      <li><strong>Manage Videos</strong> — Edit titles, descriptions, thumbnails, or delete directly from the bot</li>
+      <li><strong>TikTok Auto-Post</strong> — Fully automated TikTok → YouTube pipeline</li>
+      <li><strong>Bulk Downloads</strong> — Grab entire TikTok accounts with one command</li>
+    </ul>
+    <p>Update the bot by restarting your deployment. Check the <a href="changelog.html">changelog</a> for the full list.</p>
+  </article>
+
+  <article class="post">
+    <div class="post-meta">
+      <span class="post-tag">Info</span>
+      <span class="post-date">September 17, 2026</span>
+    </div>
+    <h2>📢 Official channel is live</h2>
+    <p>Follow <a href="https://t.me/animatrixxhub" target="_blank">@animatrixxhub</a> for real-time updates, tips, and support. All announcements go there first.</p>
+  </article>
+
+  <article class="post">
+    <div class="post-meta">
+      <span class="post-tag">Guide</span>
+      <span class="post-date">September 16, 2026</span>
+    </div>
+    <h2>📖 Self-hosting guide published</h2>
+    <p>If you want to run your own instance of the bot, the full <a href="docs.html">documentation</a> now covers:</p>
+    <ul>
+      <li>Railway deployment with persistent volumes</li>
+      <li>Fly.io deployment</li>
+      <li>Local PC setup</li>
+      <li>OAuth 2.0 configuration in Google Cloud</li>
+    </ul>
+  </article>
+
+  <article class="post">
+    <div class="post-meta">
+      <span class="post-tag">Fix</span>
+      <span class="post-date">September 15, 2026</span>
+    </div>
+    <h2>🔧 OAuth "Link expired" bug fixed</h2>
+    <p>If you were seeing "Link expired" or <code>invalid_grant</code> errors when connecting YouTube, this is fixed in v3.2. The causes were:</p>
+    <ul>
+      <li>Whitespace in environment variables poisoning the request</li>
+      <li>Authorization codes being URL-decoded twice</li>
+      <li>State tokens not being burned before exchange</li>
+    </ul>
+    <p>Update your deployment to pick up the fix. See the <a href="changelog.html">changelog</a> for details.</p>
+  </article>
+
+  <article class="post">
+    <div class="post-meta">
+      <span class="post-tag">Launch</span>
+      <span class="post-date">September 1, 2026</span>
+    </div>
+    <h2>🚀 The bot is live!</h2>
+    <p>Animatrixx YT Manager is officially launched. Open it in Telegram and start uploading:</p>
+    <p><a href="https://t.me/animatrixx_yt_manager_bot" target="_blank">👉 @animatrixx_yt_manager_bot</a></p>
+  </article>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>Built with ❤️ by <strong>𝕬𝖓𝖎𝖒𝖆𝖙𝖗𝖎𝖝𝖝 𝕲𝖆𝖒𝖊𝖗✪</strong> · MIT License</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
