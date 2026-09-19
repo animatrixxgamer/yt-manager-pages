@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Animatrixx YT Manager</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .faq { max-width: 820px; margin: 0 auto; padding: 60px 0; }
+  .faq h1 { font-size: 2.2rem; margin-bottom: 8px; text-align: center; }
+  .faq .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 48px; }
+  details {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    transition: all 0.2s;
+  }
+  details:hover { border-color: rgba(255,0,51,0.3); }
+  details[open] { background: rgba(255,255,255,0.06); }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    color: var(--accent);
+    transition: transform 0.2s;
+  }
+  details[open] summary::after {
+    content: '−';
+    transform: rotate(180deg);
+  }
+  details p, details li { color: var(--text-dim); margin-top: 12px; line-height: 1.7; }
+  details ul { padding-left: 24px; }
+  details code {
+    background: rgba(255,255,255,0.08);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: monospace;
+    color: var(--accent);
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">▶</span>
+      <span>Animatrixx</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://t.me/animatrixx_yt_manager_bot" class="btn-nav" target="_blank">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container faq">
+  <h1>Frequently Asked Questions</h1>
+  <p class="subtitle">Everything you need to know about the bot.</p>
+
+  <details open>
+    <summary>Is the bot really free?</summary>
+    <p>Yes — 100% free and open source. No premium tiers, no hidden fees. You can also self-host it yourself using the code on <a href="https://github.com/animatrixxgamer/animatrixx-yt-mamagw" style="color:var(--accent)">GitHub</a>.</p>
+  </details>
+
+  <details>
+    <summary>How many channels can I connect?</summary>
+    <p>Unlimited. The bot supports multiple YouTube channels per user, with a channel switcher to pick which one is active.</p>
+  </details>
+
+  <details>
+    <summary>Can I upload YouTube Shorts through the bot?</summary>
+    <p>Yes. Use the "📹 YouTube Short" option in the upload hub. The bot automatically adds <code>#shorts</code> to Shorts uploads.</p>
+  </details>
+
+  <details>
+    <summary>Is there a limit on uploads per day?</summary>
+    <p>Google enforces a daily quota of 10,000 API units. Each upload costs ~1,600 units, so roughly <strong>6 uploads per day</strong> per Google Cloud project. This is a Google limit, not a bot limit.</p>
+  </details>
+
+  <details>
+    <summary>What social platforms can I download from?</summary>
+    <p>YouTube, TikTok, Instagram, X/Twitter, Facebook, Reddit, Vimeo, Twitch, Pinterest, Dailymotion, Snapchat, Likee, Kwai, Rumble, and Odysee.</p>
+  </details>
+
+  <details>
+    <summary>Can I schedule uploads?</summary>
+    <p>Yes. When adding a video to the queue, use scheduling formats like <code>+90m</code>, <code>+3h</code>, <code>+2d</code>, or an exact date like <code>2026-09-20 18:30</code> (UTC).</p>
+  </details>
+
+  <details>
+    <summary>How does TikTok auto-post work?</summary>
+    <p>Use <code>/tiktok @username</code> or send a TikTok profile link. The bot polls that account, downloads new videos, and publishes them to your chosen YouTube channel automatically. You can configure batch size, check interval, target channel, and privacy per source.</p>
+  </details>
+
+  <details>
+    <summary>The bot says "Link expired" when I try to connect YouTube. What do I do?</summary>
+    <p>This means the OAuth authorization code was already used or the bot restarted. Tap "Connect YouTube" again to get a fresh link. If it keeps happening, check that <code>YOUTUBE_REDIRECT_URI</code> in your environment matches the URI in Google Cloud Console byte-for-byte.</p>
+  </details>
+
+  <details>
+    <summary>Do I need a domain to self-host?</summary>
+    <p>No. Free hosting platforms like <strong>Fly.io</strong> and <strong>Railway</strong> give you a subdomain automatically (e.g., <code>your-bot.fly.dev</code>). Just use that as your OAuth redirect URI.</p>
+  </details>
+
+  <details>
+    <summary>What happens to my tokens if I redeploy?</summary>
+    <p>Without a persistent volume, they get wiped and you'd have to reconnect. On Railway, create a volume mounted at <code>/data</code> and set <code>STORAGE_DIR=/data</code> to persist tokens across redeploys.</p>
+  </details>
+
+  <details>
+    <summary>Is my data safe?</summary>
+    <p>OAuth tokens are encrypted with Fernet symmetric encryption. The bot doesn't collect analytics or share your data. See the <a href="privacy.html" style="color:var(--accent)">Privacy Policy</a> for full details.</p>
+  </details>
+
+  <details>
+    <summary>Can I use it for multiple people?</summary>
+    <p>Yes. The bot is multi-user out of the box. Each user connects their own channel, and their tokens are stored separately.</p>
+  </details>
+
+  <details>
+    <summary>Why does the bot show "Google hasn't verified this app" when I connect?</summary>
+    <p>Because the app hasn't been through Google's paid verification review. It's normal for personal bots. Click <strong>Advanced</strong> → <strong>Go to Animatrixx YT Manager (unsafe)</strong> to proceed. It's completely safe for personal use.</p>
+  </details>
+
+  <details>
+    <summary>How do I disconnect a channel?</summary>
+    <p>Open the channel dashboard and tap the <strong>Disconnect</strong> button. This deletes your stored token from the database. You can also revoke access via <a href="https://myaccount.google.com/permissions" style="color:var(--accent)">Google Account Permissions</a>.</p>
+  </details>
+
+  <details>
+    <summary>Can I add my own custom thumbnail?</summary>
+    <p>Yes. Send a photo along with your video, and the bot will use it as the thumbnail.</p>
+  </details>
+
+  <details>
+    <summary>Something broke. Where do I get help?</summary>
+    <p>Ping the owner: <a href="https://t.me/animatrixxgamer" style="color:var(--accent)">@animatrixxgamer</a>, or check the <a href="docs.html" style="color:var(--accent)">Docs</a> for troubleshooting.</p>
+  </details>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>Built with ❤️ by <strong>𝕬𝖓𝖎𝖒𝖆𝖙𝖗𝖎𝖝𝖝 𝕲𝖆𝖒𝖊𝖗✪</strong> · MIT License</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
