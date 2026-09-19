@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation — Animatrixx YT Manager</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .docs-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 48px;
+    padding: 60px 0;
+  }
+  .docs-sidebar {
+    position: sticky;
+    top: 90px;
+    align-self: start;
+  }
+  .docs-sidebar h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    margin: 20px 0 12px;
+  }
+  .docs-sidebar a {
+    display: block;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .docs-sidebar a:hover { color: var(--accent); }
+  .docs-content h2 {
+    font-size: 1.6rem;
+    margin: 40px 0 16px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .docs-content h2:first-child { border: none; margin-top: 0; }
+  .docs-content h3 {
+    font-size: 1.1rem;
+    margin: 24px 0 10px;
+    color: var(--accent);
+  }
+  .docs-content p, .docs-content li {
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .docs-content code {
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-family: 'SF Mono', monospace;
+    font-size: 0.88em;
+    color: var(--accent);
+  }
+  .docs-content pre {
+    background: #06060e;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    overflow-x: auto;
+    margin: 16px 0;
+    font-size: 0.85rem;
+  }
+  .docs-content pre code {
+    background: none;
+    padding: 0;
+    color: var(--text);
+  }
+  .docs-content ul, .docs-content ol {
+    padding-left: 24px;
+    margin-bottom: 16px;
+  }
+  .docs-content .callout {
+    background: rgba(160, 160, 255, 0.08);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  @media (max-width: 768px) {
+    .docs-layout { grid-template-columns: 1fr; gap: 0; }
+    .docs-sidebar { position: static; margin-bottom: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">▶</span>
+      <span>Animatrixx</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#screenshots">Screenshots</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://github.com/animatrixxgamer/animatrixx-yt-mamagw" target="_blank">GitHub</a>
+      <a href="https://t.me/animatrixx_yt_manager_bot" class="btn-nav" target="_blank">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="docs-layout">
+
+    <aside class="docs-sidebar">
+      <h4>Getting Started</h4>
+      <a href="#quickstart">Quick Start</a>
+      <a href="#env">Environment Variables</a>
+      <a href="#oauth">YouTube OAuth Setup</a>
+
+      <h4>Deployment</h4>
+      <a href="#railway">Railway</a>
+      <a href="#fly">Fly.io</a>
+      <a href="#oracle">Oracle Cloud</a>
+      <a href="#local">Local PC</a>
+
+      <h4>Using the Bot</h4>
+      <a href="#commands">Commands</a>
+      <a href="#uploads">Uploads</a>
+      <a href="#tiktok">TikTok Auto-Post</a>
+      <a href="#downloads">Social Downloads</a>
+
+      <h4>Help</h4>
+      <a href="#troubleshooting">Troubleshooting</a>
+    </aside>
+
+    <main class="docs-content">
+
+      <h2 id="quickstart">Quick Start</h2>
+      <p>Get the bot running locally in 3 commands:</p>
+      <pre><code># 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Configure
+cp .env.example .env
+# Edit .env with your tokens
+
+# 3. Run!
+python bot.py</code></pre>
+
+      <h2 id="env">Environment Variables</h2>
+      <h3>Required</h3>
+      <pre><code>BOT_TOKEN=your_telegram_bot_token
+OWNER_ID=your_telegram_user_id
+YOUTUBE_CLIENT_ID=your_google_client_id
+YOUTUBE_CLIENT_SECRET=your_google_client_secret
+YOUTUBE_REDIRECT_URI=https://your-domain.com/oauth/youtube/callback</code></pre>
+
+      <h3>Optional</h3>
+      <pre><code>PREFER_ENV_FILE=1
+SOCIAL_COOKIES_FILE=storage/cookies.txt
+TIKTOK_POLL_SECONDS=900
+SCHEDULER_TICK_SECONDS=30
+PUBLIC_BASE_URL=https://your-app.fly.dev
+STORAGE_DIR=/data</code></pre>
+
+      <div class="callout">
+        <strong>💡 Tip:</strong> On Railway, set <code>STORAGE_DIR=/data</code> and create a volume mounted at <code>/data</code> so your connected channels survive redeploys.
+      </div>
+
+      <h2 id="oauth">YouTube OAuth Setup</h2>
+      <ol>
+        <li>Go to <a href="https://console.cloud.google.com" target="_blank" style="color:var(--accent)">Google Cloud Console</a></li>
+        <li>Create a project → enable <strong>YouTube Data API v3</strong></li>
+        <li>Credentials → OAuth Client ID → type <strong>Web application</strong></li>
+        <li>Add your redirect URI: <code>https://your-domain.com/oauth/youtube/callback</code></li>
+        <li>Copy the Client ID and Client Secret into your <code>.env</code></li>
+      </ol>
+      <p>Run <code>/diag</code> in the bot to see the exact redirect URI to use.</p>
+
+      <h2 id="railway">Deploy on Railway</h2>
+      <ol>
+        <li>Push your code to GitHub</li>
+        <li>Go to <a href="https://railway.app" target="_blank" style="color:var(--accent)">Railway.app</a></li>
+        <li>New Project → Deploy from GitHub repo</li>
+        <li>Add environment variables in the <strong>Variables</strong> tab</li>
+        <li>Settings → Volumes → New Volume → mount at <code>/data</code></li>
+        <li>Settings → Networking → Generate Domain</li>
+        <li>Copy the URL and set <code>YOUTUBE_REDIRECT_URI</code> to <code>https://your-domain.up.railway.app/oauth/youtube/callback</code></li>
+        <li>Add the same URI to Google Cloud Console</li>
+      </ol>
+
+      <h2 id="fly">Deploy on Fly.io</h2>
+      <p>See <code>FLY_IO_DEPLOY.md</code> in the repo for full details.</p>
+
+      <h2 id="oracle">Deploy on Oracle Cloud</h2>
+      <p>See <code>ORACLE_CLOUD_DEPLOY.md</code> in the repo for full details.</p>
+
+      <h2 id="local">Run on Your PC</h2>
+      <p>See <code>LOCAL_PC_GUIDE.md</code> in the repo.</p>
+
+      <h2 id="commands">Commands</h2>
+      <pre><code>/start  /menu          🏠  Main menu
+/mychannel /dashboard  📺  Channel dashboard
+/connect               🔗  Connect YouTube
+/upload                📤  Upload hub
+/analytics  /stats     📊  Analytics dashboard
+/queue  /schedule      📋  Queue & scheduling
+/dl &lt;link&gt;             📥  Download from link
+/tiktok @user          🎵  TikTok auto-post
+/jobs                  📜  Upload history
+/cancel                ❌  Cancel current input
+/ping  /status         🏓  Bot health
+/diag                  🧪  Diagnostics (admin)</code></pre>
+
+      <h2 id="uploads">Uploads</h2>
+      <p>Send a video to the bot or use <code>/upload</code>. You can:</p>
+      <ul>
+        <li>Upload as a <strong>Short</strong> (auto-tagged <code>#shorts</code>)</li>
+        <li>Upload as a <strong>regular video</strong></li>
+        <li>Import <strong>from a link</strong> (TikTok, Instagram, etc.)</li>
+        <li>Bulk upload <strong>many links</strong> at once</li>
+      </ul>
+
+      <h2 id="tiktok">TikTok Auto-Post</h2>
+      <p>Use <code>/tiktok @username</code> or send a TikTok profile link. The bot will:</p>
+      <ul>
+        <li>Poll for new videos on the source</li>
+        <li>Download them</li>
+        <li>Publish to your chosen channel with the settings you configure</li>
+      </ul>
+
+      <h2 id="downloads">Social Downloads</h2>
+      <p>Paste any link, or use <code>/dl &lt;link&gt;</code>. Supported platforms:</p>
+      <p>YouTube · TikTok · Instagram · X/Twitter · Facebook · Reddit · Vimeo · Twitch · Pinterest · Dailymotion · Snapchat · Likee · Kwai · Rumble · Odysee</p>
+
+      <h2 id="troubleshooting">Troubleshooting</h2>
+      <h3>Bot doesn't respond to commands</h3>
+      <p>Run <code>/diag</code> to check if the bot is alive. If nothing happens, the token may be wrong.</p>
+
+      <h3>"Google hasn't verified this app"</h3>
+      <p>This is normal for personal bots. Click <strong>Advanced</strong> → <strong>Go to [App] (unsafe)</strong>.</p>
+
+      <h3>OAuth redirect mismatch</h3>
+      <p>Copy the redirect URI from <code>/diag</code> and add it to Google Cloud Console → Credentials → Authorized redirect URIs.</p>
+
+      <h3>Uploads fail with quota error</h3>
+      <p>YouTube gives 10,000 units/day. Each upload costs ~1,600 units, so about 6 uploads/day max.</p>
+
+    </main>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>Built with ❤️ by <strong>𝕬𝖓𝖎𝖒𝖆𝖙𝖗𝖎𝖝𝖝 𝕲𝖆𝖒𝖊𝖗✪</strong> · MIT License</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
