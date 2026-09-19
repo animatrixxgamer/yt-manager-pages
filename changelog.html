@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — Animatrixx YT Manager</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .changelog { max-width: 800px; margin: 0 auto; padding: 60px 0; }
+  .changelog h1 { font-size: 2.2rem; margin-bottom: 8px; text-align: center; }
+  .changelog .subtitle { text-align: center; color: var(--text-dim); margin-bottom: 48px; }
+  .release {
+    position: relative;
+    padding-left: 32px;
+    padding-bottom: 40px;
+    border-left: 2px solid var(--border);
+  }
+  .release:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .release::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 0, 51, 0.15);
+  }
+  .release-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .version {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+  }
+  .version-tag {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    background: rgba(255, 0, 51, 0.15);
+    color: var(--red);
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .version-tag.new { background: rgba(160, 255, 160, 0.15); color: #a0ffa0; }
+  .version-tag.fix { background: rgba(255, 220, 100, 0.15); color: #ffdc64; }
+  .release-date {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+  .release ul {
+    padding-left: 20px;
+    margin-top: 10px;
+  }
+  .release ul li {
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .release ul li strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-icon">▶</span>
+      <span>Animatrixx</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+      <a href="https://t.me/animatrixx_yt_manager_bot" class="btn-nav" target="_blank">Open Bot</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container changelog">
+  <h1>Changelog</h1>
+  <p class="subtitle">New features, fixes, and improvements.</p>
+
+  <div class="release">
+    <div class="release-header">
+      <span class="version">v4.0 — Epic Edition</span>
+      <span class="version-tag new">Latest</span>
+      <span class="release-date">September 19, 2026</span>
+    </div>
+    <ul>
+      <li><strong>🆕 Upload Hub</strong> — Pick Shorts, Video, Link, or Bulk before uploading</li>
+      <li><strong>🆕 Channel Dashboard</strong> — Full control panel for each channel</li>
+      <li><strong>🆕 Analytics Dashboard</strong> — Views, likes, subscribers at a glance</li>
+      <li><strong>🆕 Manage Videos</strong> — Browse, filter, edit, and delete uploads</li>
+      <li><strong>🆕 Shorts Auto-Tag</strong> — Shorts automatically get <code>#shorts</code></li>
+      <li><strong>🆕 Colored Buttons</strong> — Blue / Green / Red for clarity</li>
+      <li><strong>🆕 TikTok Auto-Post</strong> — Full polling system with per-source controls</li>
+      <li><strong>🆕 Bulk Downloads</strong> — Whole TikTok accounts, up to 50 links at once</li>
+      <li><strong>🆕 Multi-Channel</strong> — Connect and switch between multiple channels</li>
+      <li><strong>🆕 Fernet Encryption</strong> — OAuth tokens encrypted at rest</li>
+      <li><strong>🆕 Admin Panel</strong> — Stats, users, ban/unban, premium, broadcast</li>
+      <li><strong>🆕 File Hosting</strong> — Host <code>.py</code>, <code>.js</code>, <code>.zip</code> with auto-install</li>
+      <li><strong>158 automated tests</strong> — Every button verified to have a handler</li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-header">
+      <span class="version">v3.2 — OAuth Multi-User</span>
+      <span class="version-tag fix">Fix</span>
+      <span class="release-date">September 15, 2026</span>
+    </div>
+    <ul>
+      <li>Fixed <code>invalid_grant</code> from whitespace in env variables (<code>.strip()</code>)</li>
+      <li>Added URL-decode of authorization codes — fixes <code>%2F</code> double-encoding</li>
+      <li>State tokens now burned before exchange — prevents replay "Link expired" errors</li>
+      <li>Access tokens cached in memory — faster uploads</li>
+      <li><code>invalid_grant</code> now marks channels as <code>revoked</code> for cleaner UX</li>
+      <li>Disconnect button added — revokes tokens at Google and deletes DB row</li>
+      <li>Paste-code fallback now uses shared helpers (single decode path)</li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-header">
+      <span class="version">v3.0 — Real Uploads</span>
+      <span class="release-date">September 10, 2026</span>
+    </div>
+    <ul>
+      <li>Real resumable uploads with live progress bar</li>
+      <li>Retry with exponential backoff</li>
+      <li>Native YouTube scheduling via <code>publishAt</code></li>
+      <li>Per-video stats: views, likes, comments</li>
+      <li>Thumbnail upload from photos</li>
+      <li>Channel switcher — active channel remembered per user</li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-header">
+      <span class="version">v2.0 — Social Imports</span>
+      <span class="release-date">September 5, 2026</span>
+    </div>
+    <ul>
+      <li>yt-dlp integration — download from 15+ platforms</li>
+      <li>Bulk downloads — paste 50 links at once</li>
+      <li>Signed download links for files over 50MB</li>
+      <li>My Downloads — re-download, zip, or queue saved files</li>
+    </ul>
+  </div>
+
+  <div class="release">
+    <div class="release-header">
+      <span class="version">v1.0 — Initial Release</span>
+      <span class="release-date">September 1, 2026</span>
+    </div>
+    <ul>
+      <li>Basic YouTube upload from Telegram</li>
+      <li>OAuth 2.0 connection flow</li>
+      <li>SQLite storage</li>
+      <li>Queue system</li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>Built with ❤️ by <strong>𝕬𝖓𝖎𝖒𝖆𝖙𝖗𝖎𝖝𝖝 𝕲𝖆𝖒𝖊𝖗✪</strong> · MIT License</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
